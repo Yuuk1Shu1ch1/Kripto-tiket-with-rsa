@@ -9,7 +9,7 @@ import TheWelcome from '../components/TheWelcome.vue'
     <input type="text" v-model="email">
     <p>Password</p>
     <input type="text" v-model="password">
-    <button>login</button>
+    <button @click="postUser()">login</button>
     <p> {{ validation }} </p>
   </main>
 </template>

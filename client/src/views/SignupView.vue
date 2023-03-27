@@ -14,6 +14,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 </template>
 
 <script>
+    import axios from "axios"
     export default {
         data() {
             return {
@@ -22,9 +23,18 @@ import TheWelcome from '../components/TheWelcome.vue'
             };
         },
         methods: {
-            display(){
-                console.log(this.email);
-                console.log(this.password);
+            async postUser(){
+                let res = await axios.post('http://localhost:8000/api/signup',{
+                    email: this.email,
+                    password: this.password
+                })
+                .then((response) => {
+                    console.log(response);
+
+                })
+                .catch((err) => {
+                    console.log(rsponse);
+                })
             }
         }
     }

@@ -47,13 +47,13 @@ router.post("api/login", async(req, res) => {
 })
 
 router.post("/api/order", async(req, res) => {
-    var nama = req.body.nama
+    var name = req.body.name
     var ktp = req.body.ktp
     var uid = req.body.uid
     try{
         const docRef = await addDoc(collection(db, "Event"), {
             uid: "",
-            nama: "",
+            name: "",
             ktp: ""
         })
         res.send(docRef.id)

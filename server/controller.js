@@ -46,4 +46,22 @@ router.post("api/login", async(req, res) => {
     }
 })
 
+router.post("/api/order", async(req, res) => {
+    var nama = req.body.nama
+    var ktp = req.body.ktp
+    var uid = req.body.uid
+    try{
+        const docRef = await addDoc(collection(db, "Event"), {
+            uid: "",
+            nama: "",
+            ktp: ""
+        })
+        res.send(docRef.id)
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+
+
 export default router;

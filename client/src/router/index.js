@@ -27,6 +27,11 @@ const router = createRouter({
       name: 'signup',
       component: () => import('../views/SignupView.vue')
     },
+    {
+      path: '/encrypt',
+      name: 'encrypt',
+      component: () => import('../views/EncryptView.vue')
+    }
   ]
 })
 

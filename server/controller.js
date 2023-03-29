@@ -63,5 +63,16 @@ router.post("/api/order", async(req, res) => {
     }
 })
 
+router.get("/api/list", async(req, res) => {
+    try{
+        const querySnapshot = await getDocs(collection(db, "Event"))
+        querySnapshot.forEach((doc) => {
+            res.send(doc.data())
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
+})
 
 export default router;

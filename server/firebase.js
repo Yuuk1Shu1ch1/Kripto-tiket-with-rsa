@@ -5,13 +5,13 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 // isikan firebaseConfig disini
 const firebaseConfig = {
-    apiKey: "AIzaSyAlrXLHO4N6iwQnftLRDq52zSzmUwU43Lc",
-    authDomain: "expressjs-fp.firebaseapp.com",
-    projectId: "expressjs-fp",
-    storageBucket: "expressjs-fp.appspot.com",
-    messagingSenderId: "35720847152",
-    appId: "1:35720847152:web:f030a0e97b6aef23f332f5"
-  };
+  apiKey: "AIzaSyA2ma1p5KJhEmmv6jQNkljvYqZx7FKAK4U",
+  authDomain: "kripto-rsa.firebaseapp.com",
+  projectId: "kripto-rsa",
+  storageBucket: "kripto-rsa.appspot.com",
+  messagingSenderId: "573621728992",
+  appId: "1:573621728992:web:ad84a0dd58c36b9bb58285"
+};
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);

@@ -20,11 +20,6 @@ const router = createRouter({
       }
     },
     {
-      path: '/encrypt',
-      name: 'encrypt',
-      component: () => import('../views/EncryptView.vue')
-    },
-    {
       path: '/order',
       name: 'order',
       component: () => import('../views/Order.vue')

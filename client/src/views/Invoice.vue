@@ -1,6 +1,6 @@
 <template>
-  <div class="container text-white m-auto mt-5">
-    <div>
+  <div class="container text-black fw-bold m-auto mt-5">
+    <div class="card opacity-50" style="background-color: white;">
         <h1>Invoice</h1>
         <p class="card-text"><strong>Name:</strong> {{ name }}</p>
         <p class="card-text"><strong>Email:</strong> {{ email }}</p>

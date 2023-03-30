@@ -32,7 +32,7 @@ export default {
     async getInvoice() {
       const orderId = this.$route.params.id;
       try {
-        const response = await axios.get(`http://localhost:8000/api/order/${orderId}`)
+        const response = await axios.get(`https://kripto-tiket-with-rsa.vercel.app/api/order/${orderId}`)
         this.name = response.data.name
         this.email = response.data.email
         this.nohp = response.data.nohp

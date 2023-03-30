@@ -1,36 +1,31 @@
-function generateKeys() {
-    const p = getRandomPrime();
-    const q = getRandomPrime();
-    const n = p * q;
-    const phi = (p - 1) * (q - 1);
-    let e = 2;
-    while (gcd(e, phi) !== 1) {
-      e++;
+  function isPrime(num){
+    if(num <= 1){
+      return false
     }
-    const d = modInverse(e, phi);
-    return {
-      publicKey: [e, n],
-      privateKey: [d, n],
-    };
-  }
-  
-  function getRandomPrime(max) {
-    let isPrime = false;
-  let num;
-  
-  while (!isPrime) {
-    num = Math.floor(Math.random() * max) + 1;
-    isPrime = true;
-    
-    for (let i = 2; i <= Math.sqrt(num); i++) {
-      if (num % i === 0) {
-        isPrime = false;
-        break;
+    else if(num === 2 || num === 3){
+      return true;
+    }
+    else if(num % 2 === 0 || num % 3 === 0){
+      return false;
+    }
+    else{
+      for(let i = 4; i < Math.sqrt(num); i++){
+        if(num % i === 0){
+          return false;
+        }
       }
     }
+    return true;    
   }
   
-  return num;
+  function getRandomPrime() {
+    let num;
+    num = Math.floor(Math.random() * 16) + 1;
+  
+    while (!isPrime(num)) {
+        num = Math.floor(Math.random() * 16) + 1;
+    }
+    return num;
     // generate random prime number
   }
   
@@ -43,24 +38,24 @@ function generateKeys() {
     // calculate greatest common divisor
   }
   
-  function modInverse(a, m) {
-    let m0 = m;
+  function modInverse(e, phi) { //a, m
+    let m0 = phi;
     let x0 = 0;
     let x1 = 1;
     let temp;
  
-    if (m === 1) {
+    if (phi === 1) {
         return 0;
     }
  
-    while (a > 1) {
+    while (e > 1) {
         // q adalah hasil pembagian a dengan m
-        let q = Math.floor(a / m);
-        temp = m;
+        let q = Math.floor(e / phi);
+        temp = phi;
  
         // m adalah sisa pembagian a dengan m
-        m = a % m;
-        a = temp;
+        phi = e % phi;
+        e = temp;
  
         temp = x0;
         x0 = x1 - q * x0;
@@ -75,26 +70,6 @@ function generateKeys() {
         // calculate modular inverse
   }
 
-  function encrypt(message, publicKey) {
-    const [e, n] = publicKey;
-    const encryptedMessage = message.split('').map(char => {
-      const charCode = char.charCodeAt(0);
-      const encryptedCharCode = modExp(charCode, e, n);
-      return String.fromCharCode(encryptedCharCode);
-    }).join('');
-    return encryptedMessage;
-  }
-  
-  function decrypt(encryptedMessage, privateKey) {
-    const [d, n] = privateKey;
-    const decryptedMessage = encryptedMessage.split('').map(char => {
-      const charCode = char.charCodeAt(0);
-      const decryptedCharCode = modExp(charCode, d, n);
-      return String.fromCharCode(decryptedCharCode);
-    }).join('');
-    return decryptedMessage;
-  }
-  
   function modExp(a, b, n) {
     if (n === 1) {
         return 0;
@@ -115,8 +90,28 @@ function generateKeys() {
       return result;
     // calculate modular exponentiation
   }
+
+  function encrypt(message, publicKey) {
+    const [e, n] = publicKey;
+    let encryptedMessage = message.split('').map(char => {
+      let charCode = parseInt(char);
+      let encryptedCharCode = modExp(charCode, e, n);
+      return encryptedCharCode.toString();
+    }).join('');
+    return encryptedMessage;
+  }
+  
+  function decrypt(encryptedMessage, privateKey) {
+    const [d, n] = privateKey;
+    let decryptedMessage = encryptedMessage.split('').map(char => {
+      let charCode = parseInt(char);
+      let decryptedCharCode = modExp(charCode, d, n);
+      return decryptedCharCode.toString();
+    }).join('');
+    return decryptedMessage;
+  }
+  
   export {
-    generateKeys,
     encrypt,
     decrypt,
     gcd,

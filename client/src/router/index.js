@@ -6,12 +6,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'login',
-      component: () => import('../views/LoginView.vue')
+      component: () => import('../views/LoginView.vue'),
+      meta: {
+        hideNavbar: true,
+      }
     },
     {
       path: '/signup',
       name: 'signup',
-      component: () => import('../views/SignupView.vue')
+      component: () => import('../views/SignupView.vue'),
+      meta: {
+        hideNavbar: true,
+      }
     },
     {
       path: '/encrypt',
@@ -23,6 +29,24 @@ const router = createRouter({
       name: 'order',
       component: () => import('../views/Order.vue')
     },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import('../views/Homepage.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('../views/NotFound.vue'),
+      meta: {
+        hideNavbar: true,
+      }
+    },
+    {
+      path: '/invoice/:id',
+      name: 'invoice',
+      component: () => import('../views/Invoice.vue')
+    }
   ]
 })
 

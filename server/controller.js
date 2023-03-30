@@ -46,14 +46,21 @@ router.post("/api/login", async(req, res) => {
     }
 })
 
+
 router.post("/api/order", async(req, res) => {
     try{
-        var name = req.body.name
-        var email = req.body.email
-        var ktp = req.body.ktp
-        var uid = req.body.uid
-        var nohp = req.body.nohp
-        var alamat = req.body.alamat
+        let name = req.body.name
+        let email = req.body.email
+        let ktp = req.body.ktp
+        let uid = req.body.uid
+        let nohp = req.body.nohp
+        let alamat = req.body.alamat
+        let privateKey = req.body.private
+
+                // cek apakah ktp bernilai null atau tidak valid
+        if (!ktp || typeof ktp !== 'string') {
+          ktp = '' // atur nilai default jika ktp bernilai null atau tidak valid
+        }
 
         const docRef = await addDoc(collection(db, "Event"), {
             uid: uid,
@@ -61,21 +68,27 @@ router.post("/api/order", async(req, res) => {
             name: name,
             ktp: ktp,
             nohp: nohp,
-            alamat: alamat
+            alamat: alamat,
+            privateKey: privateKey
         })
-        res.send(docRef.id)
+        res.status(200).send(docRef.id)
     }
     catch(err){
+        res.status(500).send(err)
         console.log(err)
     }
 })
 
-router.get("/api/list", async(req, res) => {
+router.get("/api/order/:id", async(req, res) => {
     try{
-        const querySnapshot = await getDocs(collection(db, "Event"))
-        querySnapshot.forEach((doc) => {
-            res.send(doc.data())
-        })
+        const docSnapshot = await getDoc(doc(db, "Event", req.params.id))
+        console.log(docSnapshot);
+        if(docSnapshot.exists()){
+            res.send(docSnapshot.data())
+        }
+        else{
+            res.status(404).send("Document not found")
+        }
     }
     catch(err){
         console.log(err)

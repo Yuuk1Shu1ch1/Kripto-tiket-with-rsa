@@ -1,7 +1,3 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
   <main>
     <h1>Login</h1>
@@ -11,6 +7,8 @@ import TheWelcome from '../components/TheWelcome.vue'
     <input type="text" v-model="password">
     <button @click="postUser()">login</button>
     <p> {{ validation }} </p>
+    <p>Don't have any account just <router-link to="/signup">Signup</router-link></p>
+    
   </main>
 </template>
 
@@ -26,7 +24,7 @@ import TheWelcome from '../components/TheWelcome.vue'
         },
         methods:{
           async postUser(){
-            let res = await axios.post('http://localhost:8000/api/login', {
+            let res = await axios.post('https://2b48-118-99-76-138.ap.ngrok.io/api/login', {
               email: this.email,
               password: this.password
             })
@@ -44,7 +42,7 @@ import TheWelcome from '../components/TheWelcome.vue'
                 const uid = response.data;
                 console.log(uid);
                 localStorage.setItem('uid', uid);
-                this.$router.push({path: "/"})
+                this.$router.push({path: "/order"})
               }
             })
           }

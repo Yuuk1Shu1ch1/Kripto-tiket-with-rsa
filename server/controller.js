@@ -26,7 +26,7 @@ router.post("/api/signup", async(req, res) => {
     }
 })
 
-router.post("api/login", async(req, res) => {
+router.post("/api/login", async(req, res) => {
     let email = req.body.email
     let password = req.body.password
     try{
@@ -47,14 +47,21 @@ router.post("api/login", async(req, res) => {
 })
 
 router.post("/api/order", async(req, res) => {
-    var name = req.body.name
-    var ktp = req.body.ktp
-    var uid = req.body.uid
     try{
+        var name = req.body.name
+        var email = req.body.email
+        var ktp = req.body.ktp
+        var uid = req.body.uid
+        var nohp = req.body.nohp
+        var alamat = req.body.alamat
+
         const docRef = await addDoc(collection(db, "Event"), {
-            uid: "",
-            name: "",
-            ktp: ""
+            uid: uid,
+            email: email,
+            name: name,
+            ktp: ktp,
+            nohp: nohp,
+            alamat: alamat
         })
         res.send(docRef.id)
     }

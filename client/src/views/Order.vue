@@ -76,14 +76,26 @@ export default {
           private: privateKey
         };
         try {
-          const response = await axios.post("https://4ee5-118-99-76-138.ap.ngrok.io/api/order", data);
+          const response = await axios.post("http://localhost:8000/api/order", data);
           console.log(response.data);
           console.log(response);
           this.$router.push({path:  `/invoice/${response.data}`});
         } catch (error) {
           console.log(error.response);
         }
+      },
+      checkUser(){
+            const uid = localStorage.getItem('uid');
+            if(uid){
+              this.$router.push({path: "/order"})
+            }
+            else {
+              this.$router.push({path: "/"})
+            }
       }
+    },
+    created(){
+        this.checkUser();
     }
 }
 </script>

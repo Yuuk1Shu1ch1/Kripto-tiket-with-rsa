@@ -32,7 +32,7 @@ export default {
     async getInvoice() {
       const orderId = this.$route.params.id;
       try {
-        const response = await axios.get(`https://4ee5-118-99-76-138.ap.ngrok.io/api/order/${orderId}`)
+        const response = await axios.get(`http://localhost:8000/api/order/${orderId}`)
         this.name = response.data.name
         this.email = response.data.email
         this.nohp = response.data.nohp
@@ -45,9 +45,20 @@ export default {
         console.log(error);
       }
     },
+    async checkUser(){
+            const uid = localStorage.getItem('uid');
+            const orderId = this.$route.params.id;
+            if(uid){
+              this.$router.push({path: `/invoice/${orderId}`})
+            }
+            else {
+                this.$router.push({path: "/"})
+            }
+    }
   },
   mounted() {
     this.getInvoice();
+    this.checkUser();
   }
 }
 

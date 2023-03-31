@@ -47,7 +47,7 @@
         },
         methods:{
           async postUser(){
-            let res = await axios.post('https://4ee5-118-99-76-138.ap.ngrok.io/api/login', {
+            let res = await axios.post('http://localhost:8000/api/login', {
               email: this.email,
               password: this.password
             })
@@ -69,7 +69,18 @@
               }
             })
           },
+          async checkUser(){
+            const uid = localStorage.getItem('uid');
+            if(uid){
+              this.$router.push({path: "/home"})
+            } else {
+              this.$router.push({path: "/"})
+            }
+          }
           
+        },
+        created(){
+          this.checkUser();
         }
     }
 </script>

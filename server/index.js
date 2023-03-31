@@ -5,7 +5,7 @@ import router from "./controller.js";
 const app = express();
 const port = 8000;
 const corsOption = {
-   origin: 'http://www.example.com'
+   origin: '*'
 };
 
 app.use(express.json())

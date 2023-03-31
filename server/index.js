@@ -4,6 +4,11 @@ import router from "./controller.js";
 
 const app = express();
 const port = 8000;
+const corsOption = {
+   origin: 'http://www.example.com'
+};
+
+app.use(corsOption())
 
 app.use(express.json())
 app.use(cors());

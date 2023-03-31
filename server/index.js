@@ -8,10 +8,8 @@ const corsOption = {
    origin: 'http://www.example.com'
 };
 
-app.use(corsOption())
-
 app.use(express.json())
-app.use(cors());
+app.use(cors(corsOption()));
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/", router);

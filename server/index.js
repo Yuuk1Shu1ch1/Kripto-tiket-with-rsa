@@ -4,12 +4,10 @@ import router from "./controller.js";
 
 const app = express();
 const port = 8000;
-const corsOption = {
-   origin: '*'
-};
+
 
 app.use(express.json())
-app.use(cors(corsOption()));
+app.use(cors());
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/", router);

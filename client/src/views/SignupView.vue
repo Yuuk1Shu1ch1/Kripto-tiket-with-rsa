@@ -25,7 +25,7 @@
                     </div>
                     <div class="d-grid">
                         <button class="btn btn-primary" type="submit" @click="postUser()">Sign Up</button>
-                        <p>{{ validation }}</p>
+                        <!-- <p>{{ validation }}</p> -->
                     </div>
                     <div class="mt-3">
                         <p class="mb-0  text-center">Already have an Account? <a href="/" class="text-primary fw-bold" @click="postUser()">login</a></p>

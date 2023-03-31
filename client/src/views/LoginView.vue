@@ -69,18 +69,13 @@
               }
             })
           },
-          async checkUser(){
-            const uid = localStorage.getItem('uid');
-            if(uid){
-              this.$router.push({path: "/home"})
-            } else {
-              this.$router.push({path: "/"})
-            }
-          }
           
         },
-        created(){
-          this.checkUser();
+        mounted() {
+          const uid = localStorage.getItem('uid');
+            if(uid) {
+              this.$router.push({path: "/home"});
+          }
         }
     }
 </script>

@@ -45,14 +45,10 @@ export default {
         console.log(error);
       }
     },
-    async checkUser(){
+    checkUser(){
             const uid = localStorage.getItem('uid');
-            const orderId = this.$route.params.id;
-            if(uid){
-              this.$router.push({path: `/invoice/${orderId}`})
-            }
-            else {
-                this.$router.push({path: "/"})
+            if(uid == null){
+              this.$router.push({path: "/"})
             }
     }
   },

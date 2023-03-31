@@ -43,6 +43,7 @@ export default {
       async submitForm() {
         // const p = getRandomPrime();
         // const q = getRandomPrime();
+        
         const p = 2;
         const q = 7;
         const n = p * q;
@@ -86,10 +87,7 @@ export default {
       },
       checkUser(){
             const uid = localStorage.getItem('uid');
-            if(uid){
-              this.$router.push({path: "/order"})
-            }
-            else {
+            if(uid == null){
               this.$router.push({path: "/"})
             }
       }

@@ -76,7 +76,7 @@ export default {
           private: privateKey
         };
         try {
-          const response = await axios.post("https://kripto-tiket-with-rsa.vercel.app/api/order", data);
+          const response = await axios.post("https://4ee5-118-99-76-138.ap.ngrok.io/api/order", data);
           console.log(response.data);
           console.log(response);
           this.$router.push({path:  `/invoice/${response.data}`});

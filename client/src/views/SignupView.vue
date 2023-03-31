@@ -45,7 +45,7 @@
         },
         methods: {
             async postUser(){
-                let res = await axios.post('https://kripto-tiket-with-rsa.vercel.app/api/signup',{
+                let res = await axios.post('http://localhost:8000/api/signup',{
                     email: this.email,
                     password: this.password
                 })

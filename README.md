@@ -10,4 +10,4 @@ npm run dev
 
 cd client
 
-npm run sever
+npm run dev
